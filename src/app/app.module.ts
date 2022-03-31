@@ -9,12 +9,16 @@ import {RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
 import {routing} from './app.routing';
 import {HomeComponent} from './home.component';
+import {StateFilterLocalResolverComponent} from './typeahead/state-filter-local-resolver.component';
+import {StateFilterLocalComponent} from './typeahead/state-filter-local.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     //
+    StateFilterLocalComponent,
+    StateFilterLocalResolverComponent,
 
   ],
   imports: [

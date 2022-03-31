@@ -6,10 +6,10 @@ import {Component} from '@angular/core';
     <div>
       <ul class="mt-4">
         <li>
-          <h4>Events:</h4>
+          <h4>Filter:</h4>
           <ul>
-            <li><a routerLink="simple-click">(click) Event</a></li>
-            <!--            <li><a routerLink="simple-click">(click) Event</a></li>-->
+            <li><a routerLink="state-local-filtering">Remote State but Local filtering</a></li>
+            <li><a routerLink="state-local-filtering-resolver">Remote State by Resolver but Local filtering</a></li>
           </ul>
         </li>
       </ul>
