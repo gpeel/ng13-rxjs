@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {map, startWith} from 'rxjs/operators';
-import {State} from './state';
+import {State} from '../state';
 
 
 @Component({
-  selector: 'app-state-filter-local-simpler',
+  selector: 'state-filter-local-simpler',
   template: `
     <input type="text" [formControl]="filter" placeholder="Filter states...">
 

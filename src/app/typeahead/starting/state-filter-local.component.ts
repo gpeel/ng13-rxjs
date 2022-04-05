@@ -3,11 +3,11 @@ import {Component} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {combineLatest, Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {State} from './state';
+import {State} from '../state';
 
 
 @Component({
-  selector: 'app-state-filter-local',
+  selector: 'state-filter-local',
   template: `
     <input type="text" [formControl]="filter" placeholder="Filter states...">
 

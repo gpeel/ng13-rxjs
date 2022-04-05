@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs';
-import {State} from './state';
-import {StatesHttp} from './states.http';
+import {State} from '../state';
+import {StatesHttp} from '../states.http';
 
 @Injectable({
   providedIn: 'root'
