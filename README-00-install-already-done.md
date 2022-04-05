@@ -1,6 +1,5 @@
 # My Usual setting for Angular 12/13
 
-
 ## eslint settings
 
 In ng12 no more migration from tslint to eslint, the project comes with no linter at all, so you just need to add eslint
@@ -24,13 +23,27 @@ All in one line
 
          npm i eslint-plugin-prefer-arrow eslint-plugin-import eslint-plugin-jsdoc
 
+## Bootstrap 5
+
+            npm install bootstrap
+            ng add ngx-bootstrap
+
+WARNING:
+
+            "styles": [
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",  << is NOW corrected
+              // "./dist/ngx-bootstrap/datepicker/bs-datepicker.css",  << BEFORE
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ],
+
 ## Webstorm
 
 - activate Eslint Automatic config + fix on save option
 - and disable tslint !
 - Go to Tools -> Actions On Save and check - reformat Code, Optimize Imports, Rearrange Code Run code cleanup and run
   eslint --fix
- 
+
 ## strict mode in template is not easy at first
 
 I tried to switch to false in tsconfig.json
