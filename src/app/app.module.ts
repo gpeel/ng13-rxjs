@@ -11,8 +11,10 @@ import {routing} from './app.routing';
 import {HomeComponent} from './home.component';
 import {OngoingHttpInterceptor} from './spinner-http/interceptor/ongoing-http.interceptor';
 import {SpinnerComponent} from './spinner-http/ui/spinner.component';
-import {StateFilterLocalComponent} from './typeahead/starting/state-filter-local.component';
-import {StateFilterLocalResolverComponent} from './typeahead/with-resolver/state-filter-local-resolver.component';
+import {StateFilterLocalComponent} from './typeahead/00-remote-data-local-filtering/state-filter-local.component';
+import {
+  StateFilterLocalResolverComponent
+} from './typeahead/01-remote-data-with-resolver-local-filtering/state-filter-local-resolver.component';
 
 @NgModule({
   declarations: [

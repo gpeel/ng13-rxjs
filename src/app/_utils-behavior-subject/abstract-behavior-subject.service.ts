@@ -39,7 +39,7 @@ export abstract class AbstractBehaviorSubjectService<T> {
     this.data$.next(this.initData);
   }
 
-  next(data: T) {
+  protected next(data: T) {
     console.log(`${this.constructor.name} next()`, data);
     this.data$.next(data);
   }

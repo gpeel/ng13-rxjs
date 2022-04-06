@@ -1,9 +1,11 @@
 import {ModuleWithProviders} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home.component';
-import {StateFilterLocalComponent} from './typeahead/starting/state-filter-local.component';
-import {StateFilterLocalResolverComponent} from './typeahead/with-resolver/state-filter-local-resolver.component';
-import {StatesResolver} from './typeahead/with-resolver/states.resolver';
+import {StateFilterLocalComponent} from './typeahead/00-remote-data-local-filtering/state-filter-local.component';
+import {
+  StateFilterLocalResolverComponent
+} from './typeahead/01-remote-data-with-resolver-local-filtering/state-filter-local-resolver.component';
+import {StatesResolver} from './typeahead/01-remote-data-with-resolver-local-filtering/states.resolver';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},

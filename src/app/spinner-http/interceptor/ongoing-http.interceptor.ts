@@ -9,7 +9,7 @@ import {
 import {Injectable} from '@angular/core';
 import {Observable, throwError} from 'rxjs';
 import {tap} from 'rxjs/operators';
-import {OngoingHttpState} from '../behavior-subject/ongoing-http-state.service';
+import {OngoingHttpStateStandaloneService} from '../behavior-subject/ongoing-http-state-standalone.service';
 
 
 /**
@@ -29,7 +29,7 @@ export class OngoingHttpInterceptor implements HttpInterceptor {
 
   ongoing = 0;
 
-  constructor(private ongoingHttpRequestState: OngoingHttpState) { }
+  constructor(private ongoingHttpRequestState: OngoingHttpStateStandaloneService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.ongoing++;

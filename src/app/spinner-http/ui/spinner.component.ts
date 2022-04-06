@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {OngoingHttpState} from '../behavior-subject/ongoing-http-state.service';
+import {OngoingHttpStateStandaloneService} from '../behavior-subject/ongoing-http-state-standalone.service';
 
 
 @Component({
@@ -15,9 +15,9 @@ import {OngoingHttpState} from '../behavior-subject/ongoing-http-state.service';
 export class SpinnerComponent implements OnInit {
   show = false;
 
-  constructor(private ongoingHttpRequestState: OngoingHttpState) { }
+  constructor(private ongoingHttpRequestState: OngoingHttpStateStandaloneService) { }
 
   ngOnInit(): void {
-    this.ongoingHttpRequestState.getData$().subscribe(s => this.show = s);
+    this.ongoingHttpRequestState.getOngoing$().subscribe(s => this.show = s);
   }
 }
