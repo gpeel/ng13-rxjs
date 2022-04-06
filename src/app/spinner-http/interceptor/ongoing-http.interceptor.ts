@@ -18,7 +18,7 @@ import {OngoingHttpStateStandaloneService} from '../behavior-subject/ongoing-htt
  * So this cancellation has to be captured to decrement the ongoing number of requests.
  * With Angular, HttClient DOES NOT return any event in that case
  * and you have a pending Request !
- * I used 2 tips (which I corrected and used together) from stackoverflow to make it work.
+ * I used 2 tips (which I corrected and used together) from stackoverflow to make it work$.
  * https://stackoverflow.com/questions/50172055/angular-5-httpinterceptor-detect-cancelled-xhr
  * https://stackoverflow.com/questions/47218216/angular-how-to-know-if-request-has-been-cancelled-in-httpclient/49536421#49536421
  */

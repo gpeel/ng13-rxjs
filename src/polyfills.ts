@@ -29,7 +29,7 @@
  *
  * The flags allowed in zone-flags.ts are listed here.
  *
- * The following flags will work for all browsers.
+ * The following flags will work$ for all browsers.
  *
  * (window as any).__Zone_disable_requestAnimationFrame = true; // disable patch requestAnimationFrame
  * (window as any).__Zone_disable_on_property = true; // disable patch onProperty such as onclick
@@ -45,7 +45,7 @@
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import 'zone.js';  // Included with Angular CLI.
+import 'zone.js'; // Included with Angular CLI.
 
 
 /***************************************************************************************************

@@ -8,6 +8,7 @@ import {RouterModule} from '@angular/router';
 
 import {AppComponent} from './app.component';
 import {routing} from './app.routing';
+import {ChainedShareReplayComponent} from './chained-shareReplay/chained-share-replay.component';
 import {HomeComponent} from './home.component';
 import {OngoingHttpInterceptor} from './spinner-http/interceptor/ongoing-http.interceptor';
 import {SpinnerComponent} from './spinner-http/ui/spinner.component';
@@ -25,6 +26,8 @@ import {
     StateFilterLocalResolverComponent,
     // Spinner
     SpinnerComponent,
+    // chained shareReplay
+    ChainedShareReplayComponent,
 
   ],
   imports: [
