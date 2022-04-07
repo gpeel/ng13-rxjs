@@ -10,6 +10,8 @@ import {Component} from '@angular/core';
           <ul>
             <li><a routerLink="state-local-filtering">Remote State but Local filtering</a></li>
             <li><a routerLink="state-local-filtering-resolver">Remote State by Resolver but Local filtering</a></li>
+            <li><a routerLink="state-local-filtering-cached-resolver">Remote State CACHED and by Resolver but Local
+              filtering</a></li>
           </ul>
         </li>
         <li>

@@ -25,6 +25,9 @@ import {StateFilterLocalComponent} from './typeahead/00-remote-data-local-filter
 import {
   StateFilterLocalResolverComponent
 } from './typeahead/01-remote-data-with-resolver-local-filtering/state-filter-local-resolver.component';
+import {
+  StateFilterLocalResolverCachedComponent
+} from './typeahead/03-caching-states/state-filter-local-resolver-cached.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,7 @@ import {
     //
     StateFilterLocalComponent,
     StateFilterLocalResolverComponent,
+    StateFilterLocalResolverCachedComponent,
     // Spinner
     SpinnerComponent,
     // chained shareReplay

@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, tap} from 'rxjs';
-import {AbstractBehaviorSubjectService} from '../../_utils-behavior-subject/abstract-behavior-subject.service';
+import {Observable, shareReplay} from 'rxjs';
 import {State} from '../state';
 import {StatesHttp} from '../states.http';
 
@@ -9,19 +8,22 @@ const INITIAL_STATES: State[] = [];
 @Injectable({
   providedIn: 'root'
 })
-export class StatesCache00 extends AbstractBehaviorSubjectService<State[]> {
+export class StatesCache01 {
+
+  // V1
+  private findAllCached$ = this.statesHttp.findAll().pipe(shareReplay(1));
 
   constructor(private statesHttp: StatesHttp) {
-    super();
-    super.createStore(INITIAL_STATES);
   }
 
+  // V1
   findAll(): Observable<State[]> {
-    return this.statesHttp.findAll()
-      .pipe(
-        tap(s => this.next(s)),
-        // what RxJS operator to add to mak a cache ?
-      );
+    return this.findAllCached$;
   }
+
+  // V2 : is it cached with this solution ?
+  // findAll(): Observable<State[]> {
+  //   return this.statesHttp.findAll().pipe(shareReplay(1));
+  // }
 
 }

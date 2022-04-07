@@ -16,6 +16,10 @@ import {
   StateFilterLocalResolverComponent
 } from './typeahead/01-remote-data-with-resolver-local-filtering/state-filter-local-resolver.component';
 import {StatesResolver} from './typeahead/01-remote-data-with-resolver-local-filtering/states.resolver';
+import {
+  StateFilterLocalResolverCachedComponent
+} from './typeahead/03-caching-states/state-filter-local-resolver-cached.component';
+import {StatesCachedResolver} from './typeahead/03-caching-states/states-cached.resolver';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -26,6 +30,13 @@ const appRoutes: Routes = [
     component: StateFilterLocalResolverComponent,
     resolve: {
       states: StatesResolver
+    }
+  },
+  {
+    path: 'state-local-filtering-cached-resolver',
+    component: StateFilterLocalResolverCachedComponent,
+    resolve: {
+      states: StatesCachedResolver
     }
   },
   // chained-shareReplay
