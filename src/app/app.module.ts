@@ -11,6 +11,9 @@ import {routing} from './app.routing';
 import {
   ChainedShareReplayFlexibleEndingHTTPComponent
 } from './chained-shareReplay/chained-share-replay-flexible-ending-HTTP.component';
+import {
+  ChainedShareReplayFlexibleFullComponent
+} from './chained-shareReplay/chained-share-replay-flexible-full.component';
 import {ChainedShareReplayFlexibleComponent} from './chained-shareReplay/chained-share-replay-flexible.component';
 import {ChainedShareReplayComponent} from './chained-shareReplay/chained-share-replay.component';
 import {HomeComponent} from './home.component';
@@ -34,6 +37,7 @@ import {
     ChainedShareReplayComponent,
     ChainedShareReplayFlexibleEndingHTTPComponent,
     ChainedShareReplayFlexibleComponent,
+    ChainedShareReplayFlexibleFullComponent,
 
   ],
   imports: [

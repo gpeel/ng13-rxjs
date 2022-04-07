@@ -22,30 +22,16 @@ import {StatesHttp} from '../typeahead/states.http';
 export class ChainedShareReplayComponent implements OnInit {
 
   /**
-   * TRY1 like that with findNeverEnding() : when Navigating out
-   * => We see 2 Finalize Work$ => going up because
-   *  1- when unsub data$ it goes up to unsub works
-   *  2- directly unsub works$
-   *  3- but no other Finalize because shareReplay STAYs connected even if no cleint by default
-   *
-   * TRY2 like with  findFirst()
    * - we have all finalize directly because the HTTP completes and unsub downward every potential client
    *
-   * TRY3 with findNeverEnding()
-   * now switch to refCount: true
-   * - now all finalize : 2 works$, 1 data$, 2 HTTP (after and before shareRelay)
-   */
-
-  /**
    * QUESTION (for trainees) each time we arrive to this component we have at least one HTTP (mocked or not) Request.
    * What could we change to have ONLY a cache accross Navigation ?
-   * So that the first coming to that page loads .. and ON HTTP
-   * Nav out, nav back => no HTTP ?
+   * So that the first coming to that page loads .. and ONE HTTP
+   * and when Nav out, nav back => no HTTP
+   * ?
    */
 
-    // apiData$ = this.statesHttp.findFirst().pipe(
-    // apiData$ = this.statesHttp.findNeverEnding().pipe(
-  apiData$ = this.statesHttp.findNeverEndingSecondData().pipe(
+  apiData$ = this.statesHttp.findFirst().pipe(
     tap(() => console.log('Data Fetched')),
     shareReplay({bufferSize: 1, refCount: false}), // <= default <=>  shareReplay(1)
     // shareReplay({bufferSize: 1, refCount: true}),

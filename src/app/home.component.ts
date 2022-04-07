@@ -19,6 +19,8 @@ import {Component} from '@angular/core';
             <li><a routerLink="chained-shareReplay-flexible">Chained sharedReplay Flexible HTTP</a></li>
             <li><a routerLink="chained-shareReplay-flexible-never-ending">Chained sharedReplay Flexible HTTP multi
               data</a></li>
+            <li><a routerLink="chained-shareReplay-flexible-never-ending-full">Chained sharedReplay Flexible HTTP multi
+              FULL</a></li>
           </ul>
         </li>
       </ul>
