@@ -1,5 +1,6 @@
 import {ModuleWithProviders} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {ChainedShareReplayFlexibleComponent} from './chained-shareReplay/chained-share-replay-flexible.component';
 import {ChainedShareReplayComponent} from './chained-shareReplay/chained-share-replay.component';
 import {HomeComponent} from './home.component';
 import {StateFilterLocalComponent} from './typeahead/00-remote-data-local-filtering/state-filter-local.component';
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
   },
   // chained-shareReplay
   {path: 'chained-shareReplay', component: ChainedShareReplayComponent},
+  {path: 'chained-shareReplay-flexible', component: ChainedShareReplayFlexibleComponent},
   // UI
 ];
 export const routing: ModuleWithProviders<RouterModule> = RouterModule.forRoot(appRoutes);

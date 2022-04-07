@@ -16,6 +16,7 @@ import {Component} from '@angular/core';
           <h4>Caching:</h4>
           <ul>
             <li><a routerLink="chained-shareReplay">Chained sharedReplay Problem</a></li>
+            <li><a routerLink="chained-shareReplay-flexible">Chained sharedReplay Flexible</a></li>
           </ul>
         </li>
       </ul>

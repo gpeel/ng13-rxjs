@@ -8,6 +8,7 @@ import {RouterModule} from '@angular/router';
 
 import {AppComponent} from './app.component';
 import {routing} from './app.routing';
+import {ChainedShareReplayFlexibleComponent} from './chained-shareReplay/chained-share-replay-flexible.component';
 import {ChainedShareReplayComponent} from './chained-shareReplay/chained-share-replay.component';
 import {HomeComponent} from './home.component';
 import {OngoingHttpInterceptor} from './spinner-http/interceptor/ongoing-http.interceptor';
@@ -28,6 +29,7 @@ import {
     SpinnerComponent,
     // chained shareReplay
     ChainedShareReplayComponent,
+    ChainedShareReplayFlexibleComponent,
 
   ],
   imports: [
