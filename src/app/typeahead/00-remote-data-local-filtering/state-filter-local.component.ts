@@ -24,6 +24,9 @@ export class StateFilterLocalComponent {
   filter: FormControl;
   filter$: Observable<string>;
 
+  /**
+   * with the saync pipe there is no way to catch the errors !
+   */
   constructor(private httpClient: HttpClient) {
     this.states$ = this.httpClient.get<State[]>('http://localhost:3300/states');
     this.filter = new FormControl('');

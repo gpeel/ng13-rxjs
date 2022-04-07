@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {Observable} from 'rxjs';
+import {catchError, Observable, throwError} from 'rxjs';
 import {State} from '../state';
 import {StatesHttp} from '../states.http';
 
@@ -13,6 +13,16 @@ export class StatesResolver implements Resolve<State[]> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<State[]> {
-    return this.statesHttp.findAll();
+    /**
+     * HERE we should add a catchError.
+     * It is possible and even advised ;)
+     */
+    return this.statesHttp.findAll()
+      .pipe(
+        catchError(e => {
+          alert('ERROR fetching HTTP data:' + JSON.stringify(e));
+          return throwError(e);
+        })
+      );
   }
 }
