@@ -8,14 +8,16 @@ import {RouterModule} from '@angular/router';
 
 import {AppComponent} from './app.component';
 import {routing} from './app.routing';
+import {ChainedShareReplay_01_Component} from './chained-shareReplay/01-chained-share-replay.component';
 import {
-  ChainedShareReplayFlexibleEndingHTTPComponent
-} from './chained-shareReplay/chained-share-replay-flexible-ending-HTTP.component';
+  ChainedShareReplay_02_Flexible_one_event_HTTP_Component
+} from './chained-shareReplay/02-chained-share-replay-flexible-one-event-HTTP.component';
 import {
-  ChainedShareReplayFlexibleFullComponent
-} from './chained-shareReplay/chained-share-replay-flexible-full.component';
-import {ChainedShareReplayFlexibleComponent} from './chained-shareReplay/chained-share-replay-flexible.component';
-import {ChainedShareReplayComponent} from './chained-shareReplay/chained-share-replay.component';
+  ChainedShareReplay_03_Flexible_multi_HTTP_Component
+} from './chained-shareReplay/03-chained-share-replay-flexible-multi-HTTP.component';
+import {
+  ChainedShareReplay_04_Flexible_Full_Component
+} from './chained-shareReplay/04-chained-share-replay-flexible-full.component';
 import {HomeComponent} from './home.component';
 import {OngoingHttpInterceptor} from './spinner-http/interceptor/ongoing-http.interceptor';
 import {SpinnerComponent} from './spinner-http/ui/spinner.component';
@@ -34,10 +36,10 @@ import {
     // Spinner
     SpinnerComponent,
     // chained shareReplay
-    ChainedShareReplayComponent,
-    ChainedShareReplayFlexibleEndingHTTPComponent,
-    ChainedShareReplayFlexibleComponent,
-    ChainedShareReplayFlexibleFullComponent,
+    ChainedShareReplay_01_Component,
+    ChainedShareReplay_02_Flexible_one_event_HTTP_Component,
+    ChainedShareReplay_03_Flexible_multi_HTTP_Component,
+    ChainedShareReplay_04_Flexible_Full_Component,
 
   ],
   imports: [

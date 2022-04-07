@@ -1,24 +1,19 @@
 import {Component, OnInit} from '@angular/core';
-import {finalize, Observable, of, shareReplay, Subject, Subscription, tap} from 'rxjs';
+import {finalize, Observable, of, shareReplay, Subscription, tap} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {refCountLogger} from '../_utils-behavior-subject/ref-count-logger-operator';
 import {State} from '../typeahead/state';
 import {StatesHttp} from '../typeahead/states.http';
 
 /**
- * HERE is full example with data$ enabled.
- * The difference between slide shareReplay() examples is that now the source is NOT a click$ Subject() but a unicast
+ * The difference betwwen slide shareReplay() examples is that now the source is NOT a click$ Subject() but a unicast
  * source.
- * This means that subscribing triggers reaction on the source which was NOT the case previously.
+ * This means that subscribing triggers reaction on the sourcewhich was NOT the case previously.
  * It is more complex but also more useful to cache real HTTP requests when you "pull" data.
  */
 @Component({
   selector: 'app-root',
   template: `
-    <div class="m-4">
-      <button (click)="sendDataIntoHTTP()">Send Http data</button>
-    </div>
-
     <div class="m-4">
       WORKS$ Subscription 1 : {{this.subsriptionsWork1 ? 'On' : 'undefined'}}
       <div>Data:
@@ -46,26 +41,24 @@ import {StatesHttp} from '../typeahead/states.http';
 
   `,
 })
-export class ChainedShareReplayFlexibleFullComponent implements OnInit {
+export class ChainedShareReplay_02_Flexible_one_event_HTTP_Component implements OnInit {
   work1: State | undefined;
   work2: State | undefined;
   data1: State[] | undefined;
   data2: State[] | undefined;
 
-  httpSubject = new Subject<State>();
-  counterOfHttpData = 0;
 
   subsriptionsWork1: Subscription | undefined;
   subsriptionsWork2: Subscription | undefined;
   subsriptionsData1: Subscription | undefined;
   subsriptionsData2: Subscription | undefined;
 
-  // apiData$ = this.findFirst().pipe(
-  apiData$ = this.findNeverEnding().pipe(
+  apiData$ = this.findFirst().pipe(
+    // apiData$ = this.findNeverEnding().pipe(
     tap(() => console.log('Data Fetched')),
-    // shareReplay({bufferSize: 1, refCount: false}), // <= default <=>  shareReplay(1)
-    shareReplay({bufferSize: 1, refCount: true}), // (line-MARKER-1)
-    refCountLogger(c => console.log('apiData$ after shareReplay subscribers=', c)),
+    shareReplay({bufferSize: 1, refCount: false}), // <= default <=>  shareReplay(1)
+    // shareReplay({bufferSize: 1, refCount: true}),
+    refCountLogger(c => console.log('apiData$ aftershareReplay subscribers=', c)),
     finalize(() => { console.log('Finalize apiData$ after shareReplay'); })
   );
 
@@ -73,9 +66,9 @@ export class ChainedShareReplayFlexibleFullComponent implements OnInit {
     tap(() => console.log('Building Controls')),
     map(s => ({...s, name: 'BUILDING'})),
     refCountLogger(c => console.log('work$ before shareReplay subscribers=', c)),
-    // shareReplay(1),
-    shareReplay({bufferSize: 1, refCount: true}), // (line-MARKER-2)
+    shareReplay(1),
     refCountLogger(c => console.log('work$ after shareReplay subscribers=', c)),
+    // shareReplay({bufferSize: 1, refCount: true}),
     finalize(() => { console.log('Finalize Work$'); })
   );
 
@@ -136,15 +129,5 @@ export class ChainedShareReplayFlexibleFullComponent implements OnInit {
       );
   }
 
-  sendDataIntoHTTP() {
-    this.httpSubject.next({name: 'pipo', id: 2, abbreviation: 'GG' + this.counterOfHttpData++});
-  }
-
-  findNeverEnding(): Observable<State> {
-    return this.httpSubject.pipe(
-      tap(v => { console.log('Pseudo HTTP', v); }),
-      finalize(() => { console.log('Finalize HTTP'); })
-    );
-  }
 
 }

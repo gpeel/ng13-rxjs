@@ -1,13 +1,15 @@
 import {ModuleWithProviders} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {ChainedShareReplay_01_Component} from './chained-shareReplay/01-chained-share-replay.component';
 import {
-  ChainedShareReplayFlexibleEndingHTTPComponent
-} from './chained-shareReplay/chained-share-replay-flexible-ending-HTTP.component';
+  ChainedShareReplay_02_Flexible_one_event_HTTP_Component
+} from './chained-shareReplay/02-chained-share-replay-flexible-one-event-HTTP.component';
 import {
-  ChainedShareReplayFlexibleFullComponent
-} from './chained-shareReplay/chained-share-replay-flexible-full.component';
-import {ChainedShareReplayFlexibleComponent} from './chained-shareReplay/chained-share-replay-flexible.component';
-import {ChainedShareReplayComponent} from './chained-shareReplay/chained-share-replay.component';
+  ChainedShareReplay_03_Flexible_multi_HTTP_Component
+} from './chained-shareReplay/03-chained-share-replay-flexible-multi-HTTP.component';
+import {
+  ChainedShareReplay_04_Flexible_Full_Component
+} from './chained-shareReplay/04-chained-share-replay-flexible-full.component';
 import {HomeComponent} from './home.component';
 import {StateFilterLocalComponent} from './typeahead/00-remote-data-local-filtering/state-filter-local.component';
 import {
@@ -27,10 +29,16 @@ const appRoutes: Routes = [
     }
   },
   // chained-shareReplay
-  {path: 'chained-shareReplay', component: ChainedShareReplayComponent},
-  {path: 'chained-shareReplay-flexible', component: ChainedShareReplayFlexibleEndingHTTPComponent},
-  {path: 'chained-shareReplay-flexible-never-ending', component: ChainedShareReplayFlexibleComponent},
-  {path: 'chained-shareReplay-flexible-never-ending-full', component: ChainedShareReplayFlexibleFullComponent},
+  {path: 'chained-shareReplay-01', component: ChainedShareReplay_01_Component},
+  {
+    path: 'chained-shareReplay-01-flexible-one-event-HTTP',
+    component: ChainedShareReplay_02_Flexible_one_event_HTTP_Component
+  },
+  {
+    path: 'chained-shareReplay-02-flexible-no-ending-HTTP',
+    component: ChainedShareReplay_03_Flexible_multi_HTTP_Component
+  },
+  {path: 'chained-shareReplay-03-flexible-full', component: ChainedShareReplay_04_Flexible_Full_Component},
   // UI
 ];
 export const routing: ModuleWithProviders<RouterModule> = RouterModule.forRoot(appRoutes);

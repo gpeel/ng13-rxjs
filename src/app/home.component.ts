@@ -15,12 +15,12 @@ import {Component} from '@angular/core';
         <li>
           <h4>Caching:</h4>
           <ul>
-            <li><a routerLink="chained-shareReplay">Chained sharedReplay Problem</a></li>
-            <li><a routerLink="chained-shareReplay-flexible">Chained sharedReplay Flexible HTTP</a></li>
-            <li><a routerLink="chained-shareReplay-flexible-never-ending">Chained sharedReplay Flexible HTTP multi
-              data</a></li>
-            <li><a routerLink="chained-shareReplay-flexible-never-ending-full">Chained sharedReplay Flexible HTTP multi
-              FULL</a></li>
+            <li><a routerLink="chained-shareReplay-01">Chained sharedReplay</a></li>
+            <li><a routerLink="chained-shareReplay-01-flexible-one-event-HTTP">Chained sharedReplay Flexible HTTP</a>
+            </li>
+            <li><a routerLink="chained-shareReplay-02-flexible-no-ending-HTTP">Chained sharedReplay Flexible HTTP
+              multi</a></li>
+            <li><a routerLink="chained-shareReplay-03-flexible-full">Chained sharedReplay Flexible FULL</a></li>
           </ul>
         </li>
       </ul>

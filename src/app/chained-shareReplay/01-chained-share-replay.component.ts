@@ -19,7 +19,7 @@ import {StatesHttp} from '../typeahead/states.http';
 
   `,
 })
-export class ChainedShareReplayComponent implements OnInit {
+export class ChainedShareReplay_01_Component implements OnInit {
 
   /**
    * - we have all finalize directly because the HTTP completes and unsub downward every potential client
