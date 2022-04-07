@@ -9,7 +9,7 @@ const INITIAL_STATES: State[] = [];
 @Injectable({
   providedIn: 'root'
 })
-export class StatesCache00 extends AbstractBehaviorSubjectService<State[]> {
+export class StatesCache02 extends AbstractBehaviorSubjectService<State[]> {
 
   constructor(private statesHttp: StatesHttp) {
     super();

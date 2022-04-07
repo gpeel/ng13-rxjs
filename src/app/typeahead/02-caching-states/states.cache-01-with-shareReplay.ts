@@ -8,7 +8,7 @@ const INITIAL_STATES: State[] = [];
 @Injectable({
   providedIn: 'root'
 })
-export class StatesCache01 {
+export class StatesCache01WithShareReplay {
 
   // V1
   private findAllCached$ = this.statesHttp.findAll().pipe(shareReplay(1));

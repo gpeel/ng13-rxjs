@@ -8,17 +8,17 @@ import {RouterModule} from '@angular/router';
 
 import {AppComponent} from './app.component';
 import {routing} from './app.routing';
-import {ChainedShareReplay_01_Component} from './chained-shareReplay/01-chained-share-replay.component';
+import {HomeComponent} from './home.component';
+import {ChainedShareReplay_01_Component} from './shareReplay-chained/01-chained-share-replay.component';
 import {
   ChainedShareReplay_02_Flexible_one_event_HTTP_Component
-} from './chained-shareReplay/02-chained-share-replay-flexible-one-event-HTTP.component';
+} from './shareReplay-chained/02-chained-share-replay-flexible-one-event-HTTP.component';
 import {
   ChainedShareReplay_03_Flexible_multi_HTTP_Component
-} from './chained-shareReplay/03-chained-share-replay-flexible-multi-HTTP.component';
+} from './shareReplay-chained/03-chained-share-replay-flexible-multi-HTTP.component';
 import {
   ChainedShareReplay_04_Flexible_Full_Component
-} from './chained-shareReplay/04-chained-share-replay-flexible-full.component';
-import {HomeComponent} from './home.component';
+} from './shareReplay-chained/04-chained-share-replay-flexible-full.component';
 import {OngoingHttpInterceptor} from './spinner-http/interceptor/ongoing-http.interceptor';
 import {SpinnerComponent} from './spinner-http/ui/spinner.component';
 import {StateFilterLocalComponent} from './typeahead/00-remote-data-local-filtering/state-filter-local.component';
@@ -27,7 +27,7 @@ import {
 } from './typeahead/01-remote-data-with-resolver-local-filtering/state-filter-local-resolver.component';
 import {
   StateFilterLocalResolverCachedComponent
-} from './typeahead/03-caching-states/state-filter-local-resolver-cached.component';
+} from './typeahead/02-caching-states/state-filter-local-resolver-cached.component';
 
 @NgModule({
   declarations: [

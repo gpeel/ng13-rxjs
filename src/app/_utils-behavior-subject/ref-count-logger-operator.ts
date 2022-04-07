@@ -12,7 +12,10 @@ import {defer, finalize, Observable} from 'rxjs';
 export function refCountLogger(onCountUpdate: (counter: number) => void = noop) {
   return function refCountLoggerFunction(source$: Observable<any>) {
     let counter: number = 0;
-
+    /**
+     * Creates an Observable that, on subscribe,
+     * calls an Observable factory to make an Observable for EACH NEW OBSERVER.
+     */
     return defer(() => {
       counter++;
       onCountUpdate(counter);
