@@ -10,15 +10,16 @@ import {AppComponent} from './app.component';
 import {routing} from './app.routing';
 import {HomeComponent} from './home.component';
 import {ChainedShareReplay_01_Component} from './shareReplay-chained/01-chained-share-replay.component';
-import {
-  ChainedShareReplay_02_Flexible_one_event_HTTP_Component
-} from './shareReplay-chained/02-chained-share-replay-flexible-one-event-HTTP.component';
+import {OneShareReplayComponent_02} from './shareReplay-chained/02-one-shareReplay.component';
 import {
   ChainedShareReplay_03_Flexible_multi_HTTP_Component
 } from './shareReplay-chained/03-chained-share-replay-flexible-multi-HTTP.component';
 import {
+  ChainedShareReplay_02_Flexible_one_event_HTTP_Component
+} from './shareReplay-chained/04-chained-share-replay-flexible-one-event-HTTP.component';
+import {
   ChainedShareReplay_04_Flexible_Full_Component
-} from './shareReplay-chained/04-chained-share-replay-flexible-full.component';
+} from './shareReplay-chained/05-chained-share-replay-flexible-full.component';
 import {OngoingHttpInterceptor} from './spinner-http/interceptor/ongoing-http.interceptor';
 import {SpinnerComponent} from './spinner-http/ui/spinner.component';
 import {StateFilterLocalComponent} from './typeahead/00-remote-data-local-filtering/state-filter-local.component';
@@ -41,6 +42,7 @@ import {
     SpinnerComponent,
     // chained shareReplay
     ChainedShareReplay_01_Component,
+    OneShareReplayComponent_02,
     ChainedShareReplay_02_Flexible_one_event_HTTP_Component,
     ChainedShareReplay_03_Flexible_multi_HTTP_Component,
     ChainedShareReplay_04_Flexible_Full_Component,

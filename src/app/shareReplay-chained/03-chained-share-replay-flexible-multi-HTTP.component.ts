@@ -91,6 +91,7 @@ export class ChainedShareReplay_03_Flexible_multi_HTTP_Component implements OnIn
     finalize(() => { console.log('Finalize apiData$ after shareReplay'); })
   );
 
+
   work$ = this.apiData$.pipe(
     tap(() => console.log('Building Controls')),
     map(s => ({...s, name: 'BUILDING'})),

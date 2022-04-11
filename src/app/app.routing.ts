@@ -2,15 +2,16 @@ import {ModuleWithProviders} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home.component';
 import {ChainedShareReplay_01_Component} from './shareReplay-chained/01-chained-share-replay.component';
-import {
-  ChainedShareReplay_02_Flexible_one_event_HTTP_Component
-} from './shareReplay-chained/02-chained-share-replay-flexible-one-event-HTTP.component';
+import {OneShareReplayComponent_02} from './shareReplay-chained/02-one-shareReplay.component';
 import {
   ChainedShareReplay_03_Flexible_multi_HTTP_Component
 } from './shareReplay-chained/03-chained-share-replay-flexible-multi-HTTP.component';
 import {
+  ChainedShareReplay_02_Flexible_one_event_HTTP_Component
+} from './shareReplay-chained/04-chained-share-replay-flexible-one-event-HTTP.component';
+import {
   ChainedShareReplay_04_Flexible_Full_Component
-} from './shareReplay-chained/04-chained-share-replay-flexible-full.component';
+} from './shareReplay-chained/05-chained-share-replay-flexible-full.component';
 import {StateFilterLocalComponent} from './typeahead/00-remote-data-local-filtering/state-filter-local.component';
 import {
   StateFilterLocalResolverComponent
@@ -41,15 +42,16 @@ const appRoutes: Routes = [
   },
   // shareReplay-chained
   {path: 'shareReplay-chained-01', component: ChainedShareReplay_01_Component},
+  {path: 'one-shareReplay-02', component: OneShareReplayComponent_02},
   {
-    path: 'shareReplay-chained-01-flexible-one-event-HTTP',
+    path: 'shareReplay-chained-03-one-event-HTTP',
     component: ChainedShareReplay_02_Flexible_one_event_HTTP_Component
   },
   {
-    path: 'shareReplay-chained-02-flexible-no-ending-HTTP',
+    path: 'shareReplay-chained-04-no-ending-HTTP',
     component: ChainedShareReplay_03_Flexible_multi_HTTP_Component
   },
-  {path: 'shareReplay-chained-03-flexible-full', component: ChainedShareReplay_04_Flexible_Full_Component},
+  {path: 'shareReplay-chained-05-full', component: ChainedShareReplay_04_Flexible_Full_Component},
   // UI
 ];
 export const routing: ModuleWithProviders<RouterModule> = RouterModule.forRoot(appRoutes);

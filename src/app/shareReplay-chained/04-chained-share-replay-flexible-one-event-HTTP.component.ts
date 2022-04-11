@@ -66,7 +66,7 @@ export class ChainedShareReplay_02_Flexible_one_event_HTTP_Component implements 
     tap(() => console.log('Building Controls')),
     map(s => ({...s, name: 'BUILDING'})),
     refCountLogger(c => console.log('work$ before shareReplay subscribers=', c)),
-    shareReplay(1),
+    shareReplay(1), // this cache 'Building Controls'
     refCountLogger(c => console.log('work$ after shareReplay subscribers=', c)),
     // shareReplay({bufferSize: 1, refCount: true}),
     finalize(() => { console.log('Finalize Work$'); })
