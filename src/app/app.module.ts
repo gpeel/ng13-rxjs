@@ -9,17 +9,19 @@ import {RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
 import {routing} from './app.routing';
 import {HomeComponent} from './home.component';
-import {ChainedShareReplay_01_Component} from './shareReplay-chained/01-chained-share-replay.component';
-import {OneShareReplayComponent_02} from './shareReplay-chained/02-one-shareReplay.component';
+import {ChainedShareReplay_01_Component} from './shareReplay-chained/01-chained-shareReplay.component';
+import {OneShareReplay_02_Component} from './shareReplay-chained/02-one-shareReplay.component';
 import {
-  ChainedShareReplay_03_Flexible_multi_HTTP_Component
-} from './shareReplay-chained/03-chained-share-replay-flexible-multi-HTTP.component';
+  OneShareReplay_03_refCount_BAD_Component
+} from './shareReplay-chained/03-one-shareReplay-refCount-first-BAD.component';
+import {OneShareReplay_04_multi_HTTP_Component} from './shareReplay-chained/04-one-shareReplay-multi-HTTP.component';
 import {
-  ChainedShareReplay_02_Flexible_one_event_HTTP_Component
-} from './shareReplay-chained/04-chained-share-replay-flexible-one-event-HTTP.component';
+  ChainedShareReplay_05_one_event_HTTP_Component
+} from './shareReplay-chained/05-chained-share-replay-one-event-HTTP.component';
 import {
-  ChainedShareReplay_04_Flexible_Full_Component
-} from './shareReplay-chained/05-chained-share-replay-flexible-full.component';
+  ChainedShareReplay_06_multi_HTTP_Component
+} from './shareReplay-chained/06-chained-shareReplay-multi-HTTP.component';
+import {ChainedShareReplay_07_Full_Component} from './shareReplay-chained/07-chained-shareReplay-full.component';
 import {OngoingHttpInterceptor} from './spinner-http/interceptor/ongoing-http.interceptor';
 import {SpinnerComponent} from './spinner-http/ui/spinner.component';
 import {StateFilterLocalComponent} from './typeahead/00-remote-data-local-filtering/state-filter-local.component';
@@ -50,10 +52,12 @@ import {
     SpinnerComponent,
     // chained shareReplay
     ChainedShareReplay_01_Component,
-    OneShareReplayComponent_02,
-    ChainedShareReplay_02_Flexible_one_event_HTTP_Component,
-    ChainedShareReplay_03_Flexible_multi_HTTP_Component,
-    ChainedShareReplay_04_Flexible_Full_Component,
+    OneShareReplay_02_Component,
+    OneShareReplay_03_refCount_BAD_Component,
+    OneShareReplay_04_multi_HTTP_Component,
+    ChainedShareReplay_05_one_event_HTTP_Component,
+    ChainedShareReplay_06_multi_HTTP_Component,
+    ChainedShareReplay_07_Full_Component,
 
   ],
   imports: [

@@ -8,17 +8,17 @@ import {StatesHttp} from '../typeahead/states.http';
 /**
  * The difference between slide shareReplay() examples is that now the source is NOT a click$ Subject() but a unicast
  * source.
- * This means that subscribing triggers reaction on the sourcewhich was NOT the case previously.
+ * This means that subscribing triggers reaction on the source which was NOT the case previously.
  * It is more complex but also more useful to cache real HTTP requests when you "pull" data.
  *
- * When shareReplay does not have its upward subcribe going on (and only ONE is possible) => its cache is empty.
- * So when shareReplay() unsubscribes (meaning implicitly upward subscribes) it clear its cache.
+ * If shareReplay the downward subscriber (the client) unsubs before the upward subscription is unsubscribed
+ * =>  then shareReplay clear its cache.
  *
  * Scenario1
  * If I activate
  *     shareReplay({bufferSize: 1, refCount: true}),
  * on apiData$ (line-MARKER-1) and work$ on (line-MARKER-2 )
- * Then I need a subcriber alive to fill the shareReplay cache. So in that case when clicking "Sebd HTTP data" => it
+ * Then I need a subcriber coming in to fill the shareReplay cache. So in that case when clicking "Send HTTP data" => it
  * fills the cache, and WHEN the subscribers receives it.
  * WHEN no subscribers, if I "Send Http Data" nothing happens in the apiData$ and work$ stream, nothing is subscribed
  * to. So the Subject emits to nobody.
@@ -66,34 +66,9 @@ import {StatesHttp} from '../typeahead/states.http';
       </div>
     </div>
 
-    <div class="m-4">
-      DATA$ Subscription 1 : {{this.subsriptionsData1 ? 'On' : 'undefined'}}
-      <div>Data:
-        <div>{{data1 |json}}</div>
-      </div>
-      <div>
-        <button (click)="onClickSubscribeData1()" [disabled]="subsriptionsData1">Subscribe-1-to-data$</button>
-      </div>
-      <div>
-        <button (click)="onClickUNSubscribeData1()" [disabled]="!subsriptionsData1">Unsub-1-to-data$</button>
-      </div>
-    </div>
-    <div class="m-4">
-      DATA$ Subscription 2 : {{this.subsriptionsData2 ? 'On' : 'undefined'}}
-      <div>Data:
-        <div>{{data2 |json}}</div>
-      </div>
-      <div>
-        <button (click)="onClickSubscribeData2()" [disabled]="subsriptionsData2">Subscribe-2-to-data$</button>
-      </div>
-      <div>
-        <button (click)="onClickUNSubscribeData2()" [disabled]="!subsriptionsData2">Unsub-2-to-data$</button>
-      </div>
-    </div>
-
   `,
 })
-export class ChainedShareReplay_04_Flexible_Full_Component implements OnInit {
+export class OneShareReplay_04_multi_HTTP_Component implements OnInit {
   work1: State | undefined;
   work2: State | undefined;
   data1: State[] | undefined;
@@ -116,8 +91,9 @@ export class ChainedShareReplay_04_Flexible_Full_Component implements OnInit {
     finalize(() => { console.log('Finalize apiData$ after shareReplay'); })
   );
 
+
   work$ = this.apiData$.pipe(
-    tap(() => console.log('Building Controls ¤¤¤¤¤')),
+    tap(() => console.log('Building Controls')),
     map(s => ({...s, name: 'BUILDING'})),
     refCountLogger(c => console.log('work$ before shareReplay subscribers=', c)),
     // shareReplay(1), // here we cache the BUILDING computation
@@ -127,8 +103,8 @@ export class ChainedShareReplay_04_Flexible_Full_Component implements OnInit {
   );
 
   data$ = this.work$.pipe(
-    tap(() => console.log('Computed Data ¤¤¤¤¤')),
-    map(s => ({...s, name: 'COMPUTED'})), // This computation is NOT cache
+    tap(() => console.log('Computed Data')),
+    map(s => ({...s, name: 'COMPUTED'})),
     finalize(() => { console.log('Finalize data$'); })
   );
 
@@ -138,22 +114,6 @@ export class ChainedShareReplay_04_Flexible_Full_Component implements OnInit {
   ngOnInit(): void {
     console.log('INIT');
     // this.data$.subscribe(d => this.data = d);
-  }
-
-  onClickUNSubscribeData1() {
-    if (this.subsriptionsData1) {
-      console.log('Unsubscribing data1');
-      this.subsriptionsData1.unsubscribe();
-      this.subsriptionsData1 = undefined;
-    }
-  }
-
-  onClickUNSubscribeData2() {
-    if (this.subsriptionsData2) {
-      console.log('Unsubscribing data2');
-      this.subsriptionsData2.unsubscribe();
-      this.subsriptionsData2 = undefined;
-    }
   }
 
   onClickUNSubscribeWork1() {
@@ -172,22 +132,6 @@ export class ChainedShareReplay_04_Flexible_Full_Component implements OnInit {
     }
   }
 
-
-  onClickSubscribeData1() {
-    console.log('Subscribing data1');
-    this.subsriptionsData1 = this.data$.subscribe(d => {
-      console.log('RECEIVING new data for 1', d);
-      this.data1 = d;
-    });
-  }
-
-  onClickSubscribeData2() {
-    console.log('Subscribing data2');
-    this.subsriptionsData2 = this.data$.subscribe(d => {
-      console.log('RECEIVING new data for 2', d);
-      this.data2 = d;
-    });
-  }
 
   onClickSubscribeWork1() {
     console.log('Subscribing 1');
@@ -227,7 +171,7 @@ export class ChainedShareReplay_04_Flexible_Full_Component implements OnInit {
 
   findNeverEnding(): Observable<State> {
     return this.httpSubject.pipe(
-      tap(v => { console.log('Pseudo HTTP ¤¤¤¤¤', v); }),
+      tap(v => { console.log('Pseudo HTTP', v); }),
       finalize(() => { console.log('Finalize HTTP'); })
     );
   }

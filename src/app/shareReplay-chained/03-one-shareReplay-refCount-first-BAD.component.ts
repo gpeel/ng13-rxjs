@@ -15,11 +15,12 @@ import {State} from '../typeahead/state';
   template: `
     <div class="m-4">
       WORKS$ Subscription 1 : {{this.subsriptionApi1 ? 'On' : 'undefined'}}
-      <div>Data:
+      <div>Data
         <div>{{data1 |json}}</div>
       </div>
       <div>
-        <button (click)="onClickSubscribeApi1()" [disabled]="subsriptionApi1">Subscribe-1-to-apiData$</button>
+        <button (click)="onClickSubscribeApi1()" [disabled]="subsriptionApi1">Subscribe-1-to-apiData$ + first()
+        </button>
       </div>
       <div>
         <button (click)="onClickUNSubscribeApi1()" [disabled]="!subsriptionApi1">Unsub-1-to-apiData$</button>
@@ -40,7 +41,7 @@ import {State} from '../typeahead/state';
 
   `,
 })
-export class OneShareReplay_02_Component implements OnInit {
+export class OneShareReplay_03_refCount_BAD_Component implements OnInit {
   data1: State | undefined;
   data2: State | undefined;
 
@@ -50,8 +51,14 @@ export class OneShareReplay_02_Component implements OnInit {
   apiData$ = this.findFirst().pipe(
     // apiData$ = this.findNeverEnding().pipe(
     tap(() => console.log('Data Fetched')),
-    shareReplay(1), // <=> shareReplay({bufferSize: 1, refCount: false}),
-    // shareReplay({bufferSize: 1, refCount: true}),
+    // shareReplay(1), // <=> shareReplay({bufferSize: 1, refCount: false}),
+    // CHANGED
+    // CHANGED
+    // CHANGED
+    shareReplay({bufferSize: 1, refCount: true}),
+    // CHANGED
+    // CHANGED
+    // CHANGED
     refCountLogger(c => console.log('apiData$ aftershareReplay subscribers=', c)),
     finalize(() => { console.log('Finalize apiData$ after shareReplay'); })
   );
@@ -63,7 +70,9 @@ export class OneShareReplay_02_Component implements OnInit {
 
   onClickSubscribeApi1() {
     console.log('Subscribing 1');
-    // with first() or not the cache works OK
+    // FIRST causes PB !
+    // FIRST causes PB !
+    // FIRST causes PB !
     this.subsriptionApi1 = this.apiData$.pipe(first()).subscribe(w => {
       console.log('RECEIVING new data for 1', w);
       this.data1 = w;
