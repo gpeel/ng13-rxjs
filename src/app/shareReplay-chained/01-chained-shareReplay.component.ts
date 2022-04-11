@@ -3,12 +3,7 @@ import {finalize, shareReplay, tap} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {StatesHttp} from '../typeahead/states.http';
 
-/**
- * The difference betwwen slide shareReplay() examples is that now the source is NOT a click$ Subject() but a unicast
- * source.
- * This means that subscribing triggers reaction on the sourcewhich was NOT the case previously.
- * It is more complex but also more useful to cache real HTTP requests when you "pull" data.
- */
+
 @Component({
   selector: 'app-root',
   template: `
@@ -35,7 +30,7 @@ export class ChainedShareReplay_01_Component implements OnInit {
     tap(() => console.log('Data Fetched')),
     shareReplay({bufferSize: 1, refCount: false}), // <= default <=>  shareReplay(1)
     // shareReplay({bufferSize: 1, refCount: true}),
-    finalize(() => { console.log('Finalize HTTP after shareReplay'); })
+    finalize(() => { console.log('Finalize after shareReplay apiData$'); })
   );
 
   work$ = this.apiData$.pipe(

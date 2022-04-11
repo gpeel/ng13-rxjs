@@ -5,10 +5,8 @@ import {refCountLogger} from '../_utils-behavior-subject/ref-count-logger-operat
 import {State} from '../typeahead/state';
 
 /**
- * The difference betwwen slide shareReplay() examples is that now the source is NOT a click$ Subject() but a unicast
- * source.
- * This means that subscribing triggers reaction on the sourcewhich was NOT the case previously.
- * It is more complex but also more useful to cache real HTTP requests when you "pull" data.
+ * shareReplay could be used with activating refCount => shareReplay({bufferSize: 1, refCount: true}),
+ * When
  */
 @Component({
   selector: 'app-root',

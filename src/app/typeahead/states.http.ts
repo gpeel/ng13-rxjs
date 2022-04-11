@@ -19,7 +19,8 @@ export class StatesHttp {
   findFirst(): Observable<State> {
     return this.httpClient.get<State[]>('http://localhost:3300/states')
       .pipe(
-        map(s => s[0])
+        map(s => s[0]),
+        tap(v => { console.log('HTTP ¤¤¤¤¤', v); })
       );
   }
 

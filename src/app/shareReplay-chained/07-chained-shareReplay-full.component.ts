@@ -6,29 +6,6 @@ import {State} from '../typeahead/state';
 import {StatesHttp} from '../typeahead/states.http';
 
 /**
- * The difference between slide shareReplay() examples is that now the source is NOT a click$ Subject() but a unicast
- * source.
- * This means that subscribing triggers reaction on the sourcewhich was NOT the case previously.
- * It is more complex but also more useful to cache real HTTP requests when you "pull" data.
- *
- * When shareReplay does not have its upward subcribe going on (and only ONE is possible) => its cache is empty.
- * So when shareReplay() unsubscribes (meaning implicitly upward subscribes) it clear its cache.
- *
- * Scenario1
- * If I activate
- *     shareReplay({bufferSize: 1, refCount: true}),
- * on apiData$ (line-MARKER-1) and work$ on (line-MARKER-2 )
- * Then I need a subcriber alive to fill the shareReplay cache. So in that case when clicking "Sebd HTTP data" => it
- * fills the cache, and WHEN the subscribers receives it.
- * WHEN no subscribers, if I "Send Http Data" nothing happens in the apiData$ and work$ stream, nothing is subscribed
- * to. So the Subject emits to nobody.
- *
- * Scenario2
- *  shareReplay(1) in apiData$ (line-MARKER-1)
- *  And whatever below in (line-MARKER-2) ie hareReplay(1) or shareReplay({bufferSize: 1, refCount: true}),
- *  THen even when no subscribers left (once you have at least had a subscriber once before) when "Send HTTP Data" =>
- *  the data is cache into the (line-MARKER-1) cache and when a new subscriber comes back => it receives the data
- * immediately.
  *
  */
 @Component({
@@ -110,7 +87,7 @@ export class ChainedShareReplay_07_Full_Component implements OnInit {
   // apiData$ = this.findFirst().pipe(
   apiData$ = this.findNeverEnding().pipe(
     tap(() => console.log('Data Fetched')),
-    shareReplay({bufferSize: 1, refCount: false}), // <= default <=>  shareReplay(1)
+    shareReplay(1),
     // shareReplay({bufferSize: 1, refCount: true}), // (line-MARKER-1)
     refCountLogger(c => console.log('apiData$ after shareReplay subscribers=', c)),
     finalize(() => { console.log('Finalize apiData$ after shareReplay'); })
@@ -120,8 +97,8 @@ export class ChainedShareReplay_07_Full_Component implements OnInit {
     tap(() => console.log('Building Controls ¤¤¤¤¤')),
     map(s => ({...s, name: 'BUILDING'})),
     refCountLogger(c => console.log('work$ before shareReplay subscribers=', c)),
-    // shareReplay(1), // here we cache the BUILDING computation
-    shareReplay({bufferSize: 1, refCount: true}), // (line-MARKER-2) // here the BUILDING computation is NOT cached
+    shareReplay(1), // here we cache the BUILDING computation
+    // shareReplay({bufferSize: 1, refCount: true}), // (line-MARKER-2) // here the BUILDING computation is NOT cached
     refCountLogger(c => console.log('work$ after shareReplay subscribers=', c)),
     finalize(() => { console.log('Finalize Work$'); })
   );
@@ -145,6 +122,7 @@ export class ChainedShareReplay_07_Full_Component implements OnInit {
       console.log('Unsubscribing data1');
       this.subsriptionsData1.unsubscribe();
       this.subsriptionsData1 = undefined;
+      this.data1 = undefined;
     }
   }
 
@@ -153,6 +131,7 @@ export class ChainedShareReplay_07_Full_Component implements OnInit {
       console.log('Unsubscribing data2');
       this.subsriptionsData2.unsubscribe();
       this.subsriptionsData2 = undefined;
+      this.data2 = undefined;
     }
   }
 
@@ -161,6 +140,7 @@ export class ChainedShareReplay_07_Full_Component implements OnInit {
       console.log('Unsubscribing 1');
       this.subsriptionsWork1.unsubscribe();
       this.subsriptionsWork1 = undefined;
+      this.work1 = undefined;
     }
   }
 
@@ -169,6 +149,7 @@ export class ChainedShareReplay_07_Full_Component implements OnInit {
       console.log('Unsubscribing 2');
       this.subsriptionsWork2.unsubscribe();
       this.subsriptionsWork2 = undefined;
+      this.work2 = undefined;
     }
   }
 
@@ -201,7 +182,7 @@ export class ChainedShareReplay_07_Full_Component implements OnInit {
     console.log('Subscribing 2');
     this.subsriptionsWork2 = this.work$.subscribe(w => {
       console.log('RECEIVING new work for 2', w);
-      this.work1 = w;
+      this.work2 = w;
     });
   }
 
