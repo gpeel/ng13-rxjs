@@ -18,9 +18,23 @@ import {
 } from './typeahead/01-remote-data-with-resolver-local-filtering/state-filter-local-resolver.component';
 import {StatesResolver} from './typeahead/01-remote-data-with-resolver-local-filtering/states.resolver';
 import {
-  StateFilterLocalResolverCachedComponent
-} from './typeahead/02-caching-states/state-filter-local-resolver-cached.component';
-import {StatesCachedResolver} from './typeahead/02-caching-states/states-cached.resolver';
+  StateFilter11LocalResolverCachedComponent
+} from './typeahead/02-caching-states/21-simple-shareReplay/state-filter-11-local-resolver-cached.component';
+import {
+  StatesCachedShareReplayResolver
+} from './typeahead/02-caching-states/21-simple-shareReplay/states-cached-shareReplay.resolver';
+import {
+  StateFilter22LocalResolverCachedComponent
+} from './typeahead/02-caching-states/22-behaviorSubject-problem-make-it-work/state-filter-22-local-resolver-cached.component';
+import {
+  StatesCached22BehaviorSubjectResolver
+} from './typeahead/02-caching-states/22-behaviorSubject-problem-make-it-work/states-cached-22-behaviorSubject.resolver';
+import {
+  StateFilter33LocalResolverCachedComponent
+} from './typeahead/02-caching-states/33-behaviorSubject-solution/state-filter-33-local-resolver-cached.component';
+import {
+  StatesCached33BehaviorSubjectResolver
+} from './typeahead/02-caching-states/33-behaviorSubject-solution/states-cached-33-behaviorSubject.resolver';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -34,10 +48,24 @@ const appRoutes: Routes = [
     }
   },
   {
-    path: 'state-local-filtering-cached-resolver',
-    component: StateFilterLocalResolverCachedComponent,
+    path: 'state-local-11-filtering-cached-resolver',
+    component: StateFilter11LocalResolverCachedComponent,
     resolve: {
-      states: StatesCachedResolver
+      states: StatesCachedShareReplayResolver
+    }
+  },
+  {
+    path: 'state-local-22-filtering-cached-resolver',
+    component: StateFilter22LocalResolverCachedComponent,
+    resolve: {
+      states: StatesCached22BehaviorSubjectResolver
+    }
+  },
+  {
+    path: 'state-local-33-filtering-cached-resolver',
+    component: StateFilter33LocalResolverCachedComponent,
+    resolve: {
+      states: StatesCached33BehaviorSubjectResolver
     }
   },
   // shareReplay-chained

@@ -27,8 +27,14 @@ import {
   StateFilterLocalResolverComponent
 } from './typeahead/01-remote-data-with-resolver-local-filtering/state-filter-local-resolver.component';
 import {
-  StateFilterLocalResolverCachedComponent
-} from './typeahead/02-caching-states/state-filter-local-resolver-cached.component';
+  StateFilter11LocalResolverCachedComponent
+} from './typeahead/02-caching-states/21-simple-shareReplay/state-filter-11-local-resolver-cached.component';
+import {
+  StateFilter22LocalResolverCachedComponent
+} from './typeahead/02-caching-states/22-behaviorSubject-problem-make-it-work/state-filter-22-local-resolver-cached.component';
+import {
+  StateFilter33LocalResolverCachedComponent
+} from './typeahead/02-caching-states/33-behaviorSubject-solution/state-filter-33-local-resolver-cached.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +43,9 @@ import {
     //
     StateFilterLocalComponent,
     StateFilterLocalResolverComponent,
-    StateFilterLocalResolverCachedComponent,
+    StateFilter11LocalResolverCachedComponent,
+    StateFilter22LocalResolverCachedComponent,
+    StateFilter33LocalResolverCachedComponent,
     // Spinner
     SpinnerComponent,
     // chained shareReplay

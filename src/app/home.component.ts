@@ -10,8 +10,14 @@ import {Component} from '@angular/core';
           <ul>
             <li><a routerLink="state-local-filtering">Remote State but Local filtering</a></li>
             <li><a routerLink="state-local-filtering-resolver">Remote State by Resolver but Local filtering</a></li>
-            <li><a routerLink="state-local-filtering-cached-resolver">Remote State CACHED and by Resolver but Local
+            <li><a routerLink="state-local-11-filtering-cached-resolver">Remote State CACHED (shareReplay) and by
+              Resolver but Local
               filtering</a></li>
+            <li><a routerLink="state-local-22-filtering-cached-resolver">Remote State CACHED (BehaviorSubject) 22
+              EXERCISE-TO-SOVLE
+              filtering</a></li>
+            <li><a routerLink="state-local-33-filtering-cached-resolver">Remote State CACHED (BehaviorSubject) 33
+              SOLUTION</a></li>
           </ul>
         </li>
         <li>

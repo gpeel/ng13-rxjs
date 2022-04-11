@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable, shareReplay} from 'rxjs';
-import {State} from '../state';
-import {StatesHttp} from '../states.http';
+import {State} from '../../state';
+import {StatesHttp} from '../../states.http';
 
 const INITIAL_STATES: State[] = [];
 

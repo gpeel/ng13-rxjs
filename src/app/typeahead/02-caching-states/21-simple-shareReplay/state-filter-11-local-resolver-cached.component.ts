@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {map, startWith} from 'rxjs/operators';
-import {State} from '../state';
+import {State} from '../../state';
 
 
 @Component({
@@ -19,7 +19,7 @@ import {State} from '../state';
 /**
  * The logic is simplified with a Resolver ....
  */
-export class StateFilterLocalResolverCachedComponent implements OnInit {
+export class StateFilter11LocalResolverCachedComponent implements OnInit {
   filteredStates!: State[];
   filter: FormControl;
   states!: State[]; // take from Resolver
