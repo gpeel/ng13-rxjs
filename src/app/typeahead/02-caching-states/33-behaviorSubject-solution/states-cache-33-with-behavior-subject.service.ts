@@ -25,8 +25,9 @@ export class StatesCache33WithBehaviorSubject extends AbstractBehaviorSubjectSer
   }
 
   /**
-   * If it's an action it should return a VOID event (or error if any),
-   * and client should subscribe to the subject$
+   * Since it is an action (like in Redux) it returns a VOID event (or error if any),
+   * and client should subscribe to the subject$ to get the data.
+   * The action juts return success/error (like NGXS)
    */
   findAllRefresh(): Observable<void> {
     return this.statesHttp.findAll()
