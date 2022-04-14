@@ -9,8 +9,13 @@ import {
   ChainedShareReplay_06_multi_HTTP_Component
 } from './shareReplay-chained/06-chained-shareReplay-multi-HTTP.component';
 import {ChainedShareReplay_07_Full_Component} from './shareReplay-chained/07-chained-shareReplay-full.component';
-import {OneShareReplay_02_Component} from './shareReplay/02-one-shareReplay.component';
-import {OneShareReplay_03_refCount_BAD_Component} from './shareReplay/03-one-shareReplay-refCount-first-BAD.component';
+import {OneShareReplay_01_Component} from './shareReplay/01-one-shareReplay.component';
+import {
+  OneShareReplay_02_not_same_observable_Component
+} from './shareReplay/02-one-shareReplay-not-same-obs-ANTIPATTERN.component';
+import {
+  OneShareReplay_03_refCount_BAD_Component
+} from './shareReplay/03-one-shareReplay-refCount-first-ANTIPATTERN.component';
 import {OneShareReplay_04_multi_HTTP_Component} from './shareReplay/04-one-shareReplay-multi-HTTP.component';
 import {StateFilterLocalComponent} from './typeahead/00-remote-data-local-filtering/state-filter-local.component';
 import {
@@ -68,11 +73,13 @@ const appRoutes: Routes = [
       states: StatesCached33BehaviorSubjectResolver
     }
   },
-  // shareReplay-chained
-  {path: 'shareReplay-chained-01', component: ChainedShareReplay_01_Component},
-  {path: 'one-shareReplay-02', component: OneShareReplay_02_Component},
+  //  ons shareReplay
+  {path: 'one-shareReplay-01', component: OneShareReplay_01_Component},
+  {path: 'one-shareReplay-02-not-same-obs', component: OneShareReplay_02_not_same_observable_Component},
   {path: 'one-shareReplay-03-refcount', component: OneShareReplay_03_refCount_BAD_Component},
   {path: 'one-shareReplay-04-multi-HTTP', component: OneShareReplay_04_multi_HTTP_Component},
+  // shareReplay-chained
+  {path: 'shareReplay-chained-01', component: ChainedShareReplay_01_Component},
   {
     path: 'shareReplay-chained-05-one-HTTP',
     component: ChainedShareReplay_05_one_event_HTTP_Component

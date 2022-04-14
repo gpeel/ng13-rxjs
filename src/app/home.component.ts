@@ -21,12 +21,19 @@ import {Component} from '@angular/core';
           </ul>
         </li>
         <li class="mt-2">
-          <h4>Caching:</h4>
+          <h4>Caching with shareReplay</h4>
+          <ul>
+            <li><a routerLink="one-shareReplay-02">One sharedReplay</a></li>
+            <li><a routerLink="one-shareReplay-02-not-same-obs">One sharedReplay with service HTTP ANTIPATTERN</a></li>
+            <li><a routerLink="one-shareReplay-03-refcount">One sharedReplay BEWARE of refCount true with first() </a>
+            </li>
+            <li><a routerLink="one-shareReplay-04-multi-HTTP">One sharedReplay multi event</a></li>
+          </ul>
+        </li>
+        <li class="mt-2">
+          <h4>Caching with chained shareReplay</h4>
           <ul>
             <li><a routerLink="shareReplay-chained-01">Chained sharedReplay exposing the problem</a></li>
-            <li><a routerLink="one-shareReplay-02">One sharedReplay</a></li>
-            <li><a routerLink="one-shareReplay-03-refcount">One sharedReplay beware of refCount true (BAD)</a></li>
-            <li><a routerLink="one-shareReplay-04-multi-HTTP">One sharedReplay multi event</a></li>
             <li><a routerLink="shareReplay-chained-03-one-HTTP">Chained sharedReplay one Event HTTP</a>
             </li>
             <li><a routerLink="shareReplay-chained-06-multi-HTTP">Chained sharedReplay multi event HTTP

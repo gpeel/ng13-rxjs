@@ -1,26 +1,26 @@
 import {Component, OnInit} from '@angular/core';
-import {delay, Observable, of, shareReplay, Subscription, tap} from 'rxjs';
+import {finalize, Observable, of, shareReplay, Subscription, tap} from 'rxjs';
+import {first} from 'rxjs/operators';
 import {refCountLogger} from '../_utils-behavior-subject/ref-count-logger-operator';
 import {State} from '../typeahead/state';
 
 /**
- * subscribing triggers reaction on the source
- * POssible test
- *    with
- *    shareReplay({bufferSize: 1, refCount: true}),
- *    finalize(() => { console.log('Finalize apiData$ after shareReplay'); })
- *    shareReplay(1) <=> shareReplay({bufferSize: 1, refCount: false})
+ * shareReplay could be used with activating refCount => shareReplay({bufferSize: 1, refCount: true}),
+ * first() will complete the sub1, so no left subscribers => and it completes => so with refcount true
+ * => the cache is cleared !
+ * And the next sub will trigger an new HTTP
  */
 @Component({
   selector: 'app-root',
   template: `
     <div class="m-4">
       apiData$ Subscription 1 : {{this.subsriptionApi1 ? 'Closed?' + this.subsriptionApi1.closed : 'undefined'}}
-      <div>Data:
+      <div>Data
         <div>{{data1 |json}}</div>
       </div>
       <div>
-        <button (click)="onClickSubscribeApi1()" [disabled]="subsriptionApi1">Subscribe-1-to-apiData$</button>
+        <button (click)="onClickSubscribeApi1()" [disabled]="subsriptionApi1">Subscribe-1-to-apiData$ + first()
+        </button>
       </div>
       <div>
         <button (click)="onClickUNSubscribeApi1()" [disabled]="!subsriptionApi1">Unsub-1-to-apiData$</button>
@@ -41,18 +41,28 @@ import {State} from '../typeahead/state';
 
   `,
 })
-export class OneShareReplay_02_Component implements OnInit {
+export class OneShareReplay_03_refCount_BAD_Component implements OnInit {
   data1: State | undefined;
   data2: State | undefined;
-  counter = 2;
 
   subsriptionApi1: Subscription | undefined;
   subsriptionApi2: Subscription | undefined;
 
-  apiData$ = this.findByFakeHttp().pipe(
-    shareReplay(1),
+  apiData$ = this.findFirst().pipe(
+    // apiData$ = this.findNeverEnding().pipe(
+    tap(() => console.log('Data Fetched')),
+    // shareReplay(1), // <=> shareReplay({bufferSize: 1, refCount: false}),
+    // CHANGED
+    // CHANGED
+    // CHANGED
+    shareReplay({bufferSize: 1, refCount: true}),
+    // CHANGED
+    // CHANGED
+    // CHANGED
     refCountLogger(c => console.log('apiData$ aftershareReplay subscribers=', c)),
+    finalize(() => { console.log('Finalize apiData$ after shareReplay'); })
   );
+
 
   ngOnInit(): void {
     console.log('INIT');
@@ -60,13 +70,13 @@ export class OneShareReplay_02_Component implements OnInit {
 
   onClickSubscribeApi1() {
     console.log('Subscribing 1');
-    // with first() or not the cache works OK
-    // this.subsriptionApi1 = this.apiData$.pipe(first()).subscribe(w => {
-    this.subsriptionApi1 = this.apiData$.subscribe(w => {
+    // FIRST causes PB !
+    // FIRST causes PB !
+    // FIRST causes PB !
+    this.subsriptionApi1 = this.apiData$.pipe(first()).subscribe(w => {
       console.log('RECEIVING new data for 1', w);
       this.data1 = w;
     });
-    console.log('closed?', this.subsriptionApi1!.closed);
   }
 
   onClickSubscribeApi2() {
@@ -96,12 +106,12 @@ export class OneShareReplay_02_Component implements OnInit {
   }
 
 
-  findByFakeHttp(): Observable<State> {
-    return of({name: 'pipo', id: this.counter++, abbreviation: 'GG'})
+  findFirst(): Observable<State> {
+    return of({name: 'pipo', id: 2, abbreviation: 'GG'})
       .pipe(
-        delay(1000),
-        refCountLogger(c => console.log('findFakeHTTP subscribers=', c)),
-        tap(v => console.log('HTTP executed **************************', v)),
+        refCountLogger(c => console.log('findFirst HTTP subscribers=', c)),
+        tap(v => console.log('HTTP executed *********************', v)),
+        // finalize(() => { console.log('Finalize HTTP'); })
       );
   }
 
