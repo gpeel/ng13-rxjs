@@ -2,11 +2,6 @@ import {ModuleWithProviders} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home.component';
 import {ChainedShareReplay_01_Component} from './shareReplay-chained/01-chained-shareReplay.component';
-import {OneShareReplay_02_Component} from './shareReplay-chained/02-one-shareReplay.component';
-import {
-  OneShareReplay_03_refCount_BAD_Component
-} from './shareReplay-chained/03-one-shareReplay-refCount-first-BAD.component';
-import {OneShareReplay_04_multi_HTTP_Component} from './shareReplay-chained/04-one-shareReplay-multi-HTTP.component';
 import {
   ChainedShareReplay_05_one_event_HTTP_Component
 } from './shareReplay-chained/05-chained-share-replay-one-event-HTTP.component';
@@ -14,6 +9,9 @@ import {
   ChainedShareReplay_06_multi_HTTP_Component
 } from './shareReplay-chained/06-chained-shareReplay-multi-HTTP.component';
 import {ChainedShareReplay_07_Full_Component} from './shareReplay-chained/07-chained-shareReplay-full.component';
+import {OneShareReplay_02_Component} from './shareReplay/02-one-shareReplay.component';
+import {OneShareReplay_03_refCount_BAD_Component} from './shareReplay/03-one-shareReplay-refCount-first-BAD.component';
+import {OneShareReplay_04_multi_HTTP_Component} from './shareReplay/04-one-shareReplay-multi-HTTP.component';
 import {StateFilterLocalComponent} from './typeahead/00-remote-data-local-filtering/state-filter-local.component';
 import {
   StateFilterLocalResolverComponent
