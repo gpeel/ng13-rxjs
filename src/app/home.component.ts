@@ -23,7 +23,7 @@ import {Component} from '@angular/core';
         <li class="mt-2">
           <h4>Caching with shareReplay</h4>
           <ul>
-            <li><a routerLink="one-shareReplay-02">One sharedReplay</a></li>
+            <li><a routerLink="one-shareReplay-01">One sharedReplay</a></li>
             <li><a routerLink="one-shareReplay-02-not-same-obs">One sharedReplay with service HTTP ANTIPATTERN</a></li>
             <li><a routerLink="one-shareReplay-03-refcount">One sharedReplay BEWARE of refCount true with first() </a>
             </li>
