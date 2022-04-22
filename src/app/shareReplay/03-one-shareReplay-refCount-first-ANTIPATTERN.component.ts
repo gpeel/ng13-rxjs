@@ -48,8 +48,7 @@ export class OneShareReplay_03_refCount_BAD_Component implements OnInit {
   subsriptionApi1: Subscription | undefined;
   subsriptionApi2: Subscription | undefined;
 
-  apiData$ = this.findFirst().pipe(
-    // apiData$ = this.findNeverEnding().pipe(
+  apiData$ = this.findOne().pipe(
     tap(() => console.log('Data Fetched')),
     // shareReplay(1), // <=> shareReplay({bufferSize: 1, refCount: false}),
     // CHANGED
@@ -106,10 +105,10 @@ export class OneShareReplay_03_refCount_BAD_Component implements OnInit {
   }
 
 
-  findFirst(): Observable<State> {
+  findOne(): Observable<State> {
     return of({name: 'pipo', id: 2, abbreviation: 'GG'})
       .pipe(
-        refCountLogger(c => console.log('findFirst HTTP subscribers=', c)),
+        refCountLogger(c => console.log('findOne HTTP subscribers=', c)),
         tap(v => console.log('HTTP executed *********************', v)),
         // finalize(() => { console.log('Finalize HTTP'); })
       );

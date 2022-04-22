@@ -25,15 +25,16 @@ import {State} from '../typeahead/state';
  * Scenario2
  * If I activate
  *     shareReplay({bufferSize: 1, refCount: true}),
- * Both on apiData$ (line-MARKER-1) and work$ on (line-MARKER-2 )
- * Then I need a subcriber alive to fill the shareReplay cache.
- * => click "Subscribe-1-to-work$'
+ * on apiData$ (line-MARKER-1)
+ * Then I need a subscriber alive to fill the shareReplay cache.
+ * => click "Subscribe-1-to-api$'
  * => then when clicking "Send HTTP data" => it fills the cache, and THEN the subscriber(s) receives it.
- * WHEN no subscribers, if I "Send Http Data" nothing happens in the apiData$ stream.
- * => Subscribe-2 => ok no more HTTP, cache working
+ * (NOTE: WHEN no subscribers, if I "Send Http Data" nothing happens in the apiData$ stream)
+ * => Subscribe-2 => ok no more HTTP call generated, the is cache working, so the new subscriber receives the data in
+ * cache
  * => unsub both => CLEARS the Caches because refcount=true
- * => resub  => THE subscribers DO NOT RECEIVE anythng, they are just waiting for next HTTP send.
- * That's because the cache has been cleared.
+ * => resub  => THE subscribers DO NOT RECEIVE anything, they are just waiting for next HTTP send.
+ * That's because the cache has been cleared. Ans re-subscribing to a Subject does not start anything (anyway)
  * => click send => both receive data
  *
  * Scenario3
@@ -42,8 +43,9 @@ import {State} from '../typeahead/state';
  * shareReplay({bufferSize: 1, refCount: true}), // (line-MARKER-1)
  * - Subscribe-1
  * - Send-Http-data
- * - Complete-HTTP-Stream => this will lock the cache
- * - unsub1 (the cache is kept)
+ * - Complete-HTTP-Stream => this will LOCK the cache (so a source completing BEFORE the unsub from below will lock the
+ * cache)
+ * - unsub1 from (the cache is kept)
  * - Subscribe-1 (or 2) they receive the cache
  *
  * Scenario4
@@ -52,7 +54,7 @@ import {State} from '../typeahead/state';
  * shareReplay({bufferSize: 1, refCount: true}), // (line-MARKER-1)
  * - Subscribe-1
  * - Send-Http-data
- * - unsub1 (the cache WILL be cleared)
+ * - unsub1 (the cache WILL be cleared)  ( THE OPPOSITE : unsub before the source COMPLETING will CLEAR the cache)
  * - Complete-HTTP-Stream
  * - Subscribe-1 (or 2) they don't receive anything
  *
